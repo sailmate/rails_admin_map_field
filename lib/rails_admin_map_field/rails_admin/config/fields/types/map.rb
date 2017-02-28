@@ -66,6 +66,10 @@ module RailsAdmin::Config::Fields::Types
       200
     end
 
+    register_instance_option(:image_overlay_url) do
+      nil
+    end
+
     def sanitized_object_name(object_name)
       object_name.gsub(/]\[|[^-a-zA-Z0-9:.]/,"_").sub(/_$/,"")
     end

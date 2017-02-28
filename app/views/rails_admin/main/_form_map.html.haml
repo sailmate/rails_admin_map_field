@@ -22,6 +22,20 @@
         map: map
       });
 
+      const imageOverlayUrl = '#{field.image_overlay_url}';
+
+      if (imageOverlayUrl || imageOverlayUrl.length) {
+        var imageMapType = new google.maps.ImageMapType({
+          getTileUrl: function(coord, zoom) {
+            return imageOverlayUrl + '/' + zoom + '/' +
+                coord.x + '/' + coord.y + '.png';
+          },
+          tileSize: new google.maps.Size(256, 256)
+        });
+
+        map.overlayMapTypes.push(imageMapType);
+      }
+
       google.maps.event.addListener(map, 'click', function(e) {
         updateLocation(e.latLng);
       });
